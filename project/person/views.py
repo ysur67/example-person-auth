@@ -4,6 +4,7 @@ from person.forms import LoginForm
 from django.http import JsonResponse
 from rest_framework import status
 from django.contrib.auth import login, authenticate
+from django.urls import reverse_lazy
 
 
 class LoginTemplateView(generic.TemplateView):
@@ -19,7 +20,10 @@ class LoginTemplateView(generic.TemplateView):
             password=form.cleaned_data.get("password", None)
         )
         login(request, user)
-        return JsonResponse(form.cleaned_data, status=status.HTTP_200_OK)
+        response = {
+            "redirect": reverse_lazy("person:request-result-list")
+        }
+        return JsonResponse(response, status=status.HTTP_200_OK)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
