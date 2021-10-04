@@ -13,6 +13,8 @@ class RequestResult(models.Model):
                               choices=RequestStatus.choices, max_length=100,
                               default=RequestStatus.SUCCESS, blank=True)
     text = models.TextField(verbose_name="Результат запроса")
+    status_code = models.CharField(verbose_name="Статус ответа", max_length=10,
+                                   default="0")
 
     def __str__(self) -> str:
         return str(self.id)
