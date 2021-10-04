@@ -19,6 +19,7 @@ class ResponseToResultMapper(Mapper):
         if response_.status_code != status.HTTP_201_CREATED:
             result.status = RequestStatus.FAILURE
             result.text = self._get_response_messsage(response_)
+        result.status_code = str(response_.status_code)
         result.save()
         return result
 
