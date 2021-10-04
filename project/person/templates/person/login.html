@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Авторизация{% endblock %}
 
 {% block content %}
     <form method="POST" class="auth-form">
@@ -11,4 +14,8 @@
         {% endfor %}
         <input type="submit" value="Авторизоваться">
     </form>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script type="module" src="{% static '/js/auth.js' %}"></script>
 {% endblock %}
