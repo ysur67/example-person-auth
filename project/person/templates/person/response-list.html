@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table border="1" width="100%" cellpadding="5">
+        <tr>
+            <th>Порядоковый номер запроса</th>
+            <th>Дата отправки запроса</th>
+            <th>Статус запроса</th>
+            <th>Статус-код ответа от сервера</th>
+        </tr>
+        {% for result in object_list %}
+            <tr>
+                <th>{{ result.id }}</th>
+                <th>{{ result.date }}</th>
+                <th>{{ result.status }}</th>
+                <th>{{ result.status_code }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

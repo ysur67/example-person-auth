@@ -1,13 +1,8 @@
-from rest_framework import viewsets
-from person.serializers import UserCreateSerializer
-from person.utils import Mapper, ResponseToResultMapper
+from django.views import generic
+from person.models import RequestResult
 
 
-class PersonCreateView(viewsets.generics.CreateAPIView):
-    serializer_class = UserCreateSerializer
-
-    def dispatch(self, request, *args, **kwargs):
-        response = super().dispatch(request, *args, **kwargs)
-        mapper: Mapper = ResponseToResultMapper(response)
-        mapper.convert()
-        return response
+class RequestResultListView(generic.ListView):
+    model = RequestResult
+    queryset = RequestResult.objects.all()
+    template_name = "person/response-list.html"
