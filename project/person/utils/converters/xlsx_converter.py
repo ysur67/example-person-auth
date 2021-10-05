@@ -3,7 +3,7 @@ import pandas
 from io import BytesIO
 
 
-class XslConverter(BaseConverter):
+class XlsxConverter(BaseConverter):
     def convert(self):
         sio = BytesIO()
         PandasDataFrame = pandas.DataFrame(self._initial)

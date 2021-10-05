@@ -5,7 +5,7 @@ from django.http import HttpResponse
 import json
 import datetime
 from person.utils import (Mapper, ResponseToResultMapper,
-                          BaseConverter, TxtConverter, XslConverter)
+                          BaseConverter, TxtConverter, XlsxConverter)
 
 
 
@@ -51,6 +51,6 @@ class TxtDownloadFileView(BaseDownloadFileView):
 
 class XlsxDownloadFileView(BaseDownloadFileView):
     model = RequestResult
-    converter_class = XslConverter
+    converter_class = XlsxConverter
     FILE_NAME_TEMPLATE = "requests-||.xlsx"
     CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
