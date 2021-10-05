@@ -7,6 +7,7 @@
             <th>Дата отправки запроса</th>
             <th>Статус запроса</th>
             <th>Статус-код ответа от сервера</th>
+            <th>Сообщение об ошибке</th>
         </tr>
         {% for result in object_list %}
             <tr>
@@ -14,6 +15,7 @@
                 <th>{{ result.date }}</th>
                 <th>{{ result.status }}</th>
                 <th>{{ result.status_code }}</th>
+                <th>{{ result.text }}</th>
             </tr>
         {% endfor %}
     </table>
