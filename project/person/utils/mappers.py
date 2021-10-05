@@ -25,10 +25,11 @@ class ResponseToResultMapper(Mapper):
 
     def _get_response_messsage(self, response_: response.Response):
         result = ""
-        for value in response_.data.values():
-            if isinstance(value, (list, set, )):
-                for msg in value:
-                    result += str(msg) + "\n"
-            else:
-                result += str(value) + "\n"
+        for value in response_.data:
+            error_content = response_.data[value]
+            if isinstance(error_content, str):
+                result += f"{value}: {response_.data[value]}"
+                continue
+            for item in error_content:
+                result += f"{value}: {item}\n"
         return result
