@@ -27,8 +27,11 @@ class ResponseToResultMapper(Mapper):
         result = ""
         for value in response_.data:
             error_content = response_.data[value]
+            # В ответе может содержаться не только список ошибок,
+            # но и только одна строка с ошибкой
+            # пример - Невалидный формат входящего json
             if isinstance(error_content, str):
-                result += f"{value}: {response_.data[value]}"
+                result += f"{value}: {response_.data[value]}\n"
                 continue
             for item in error_content:
                 result += f"{value}: {item}\n"
