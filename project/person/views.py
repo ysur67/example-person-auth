@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from rest_framework import status
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class LoginTemplateView(generic.TemplateView):
@@ -31,7 +32,9 @@ class LoginTemplateView(generic.TemplateView):
         return context
 
 
-class RequestResultListView(generic.ListView):
+class RequestResultListView(LoginRequiredMixin, generic.ListView):
     model = RequestResult
     queryset = RequestResult.objects.all()
     template_name = "person/response-list.html"
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
