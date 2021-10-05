@@ -4,7 +4,11 @@ from person.models import User, RequestResult
 
 
 class CustomUserAdmin(UserAdmin):
-    pass
+    fieldsets = UserAdmin.fieldsets + (
+            (None, {
+                'fields': ('birth_date', 'phone', 'name')
+                }),
+    )
 
 class RequestResultAdmin(admin.ModelAdmin):
     pass
