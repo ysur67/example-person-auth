@@ -8,8 +8,6 @@ from person.utils import (Mapper, ResponseToResultMapper,
                           BaseConverter, TxtConverter, XlsxConverter)
 
 
-
-
 class PersonCreateView(viewsets.generics.CreateAPIView):
     serializer_class = UserCreateSerializer
 
