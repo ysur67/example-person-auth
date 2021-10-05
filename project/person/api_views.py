@@ -1,8 +1,7 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, permissions
 from person.serializers import UserCreateSerializer, RequestResultListSeriailzer
 from person.models import RequestResult
 from django.http import HttpResponse
-import json
 import datetime
 from person.utils import (Mapper, ResponseToResultMapper,
                           BaseConverter, TxtConverter, XlsxConverter)
@@ -25,6 +24,8 @@ class BaseDownloadFileView(generics.ListAPIView):
 
     FILE_NAME_TEMPLATE = "||"
     CONTENT_TYPE = ""
+    
+    permission_classes = [permissions.IsAuthenticated, ]
 
     def get(self, request, *args, **kwargs):
         filename = self.FILE_NAME_TEMPLATE.replace("||", str(datetime.date.today()))
