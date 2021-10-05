@@ -4,6 +4,7 @@ from person.models.result import RequestResult
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(required=False)
     password = serializers.SerializerMethodField()
 
     class Meta:
