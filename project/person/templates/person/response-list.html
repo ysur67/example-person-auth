@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div>
+        <a href="{% url 'person:txt-download' %}" class="download-link">Посмотреть отчет в формате .txt</a>
+        <a href="{% url 'person:xlsx-download' %}" class="download-link">Посмотреть отчет в формате .xlsx</a>
+    </div>
     <table border="1" width="100%" cellpadding="5">
         <tr>
             <th>Порядоковый номер запроса</th>
