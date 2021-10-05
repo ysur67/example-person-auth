@@ -1,4 +1,5 @@
-from django.views import generic
+from django.views import generic, View
+from django.shortcuts import redirect
 from person.models import RequestResult
 from person.forms import LoginForm
 from django.http import JsonResponse
@@ -8,7 +9,14 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class LoginTemplateView(generic.TemplateView):
+class AnonymousUserMixin(View):
+    def render_to_response(self, context, **response_kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/')
+        return super().render_to_response(context, **response_kwargs)
+
+
+class LoginTemplateView(AnonymousUserMixin, generic.TemplateView):
     template_name = "person/login.html"
     form = LoginForm
     
