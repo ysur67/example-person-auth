@@ -10,5 +10,5 @@ urlpatterns = [
         path("download-xlsx/", XlsxDownloadFileView.as_view(), name="xlsx-download"),
     ])),
     path("login/", LoginTemplateView.as_view(), name="person-login"),
-    path("persons/", RequestResultListView.as_view(), name="request-result-list"),
+    path("results/", RequestResultListView.as_view(), name="request-result-list"),
 ]
