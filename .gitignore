@@ -156,3 +156,4 @@ cython_debug/
 
 project/static/*
 !project/static/js/
+!project/static/css/
