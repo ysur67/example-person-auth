@@ -5,11 +5,11 @@ from io import BytesIO
 
 class XlsxConverter(BaseConverter):
     def convert(self):
-        sio = BytesIO()
+        output = BytesIO()
         PandasDataFrame = pandas.DataFrame(self._initial)
-        PandasWriter = pandas.ExcelWriter(sio, engine='xlsxwriter')
+        PandasWriter = pandas.ExcelWriter(output, engine='xlsxwriter')
         PandasDataFrame.to_excel(PandasWriter, sheet_name="0")
         PandasWriter.save()
-        sio.seek(0)
-        self._result = sio.getvalue()
+        output.seek(0)
+        self._result = output.getvalue()
         return self._result
