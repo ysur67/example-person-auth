@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from person.models import User
+from person.models.result import RequestResult
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -25,3 +26,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         instance.set_password(self.data["password"])
         instance.save()
         return instance
+
+
+class RequestResultListSeriailzer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestResult
+        fields = "__all__"
